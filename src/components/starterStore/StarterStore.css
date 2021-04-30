@@ -1,0 +1,37 @@
+.lamp-wrapper{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+.love-lamp{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.logo{
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .lamp-wrapper{
+        width: 100%;
+    }
+}
+
+.goods{
+    display: grid;
+}
+.img-lamp{
+    background: gray;
+    width: 290px;
+    height: 290px;
+
+}
+.lamp{
+    width: 100%;
+    height: 100%;
+}
