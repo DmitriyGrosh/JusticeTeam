@@ -1,26 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    outline: none;
+}
+html,
+body,
+#root {
     height: 100%;
 }
 
-p, h1, h2, h3, h4, h5, h6, img, span{
-    height: auto;
-    font-size: 15px;
-}
 
-ul li{
-    list-style-type: none;
-    height: auto;
-}
-
-.App{
-    min-height: 100%;
-}
-
-.wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}

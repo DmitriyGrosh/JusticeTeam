@@ -4,24 +4,59 @@ import lamp2 from '../images/lamp2.png'
 import './StarterStore.css'
 
 const StarterStore = () => {
-    return (
-        <div className='lamp-wrapper'>
-            <div className='love-lamp'>
-                <img className='logo' src={logo}/>
+
+    const ids = require('short-id');
+
+    const goods = [
+        {
+            img: lamp2,
+            info: 'Gold',
+            price: 243,
+            currency: '$',
+            id: ids.generate()
+        },
+        {
+            img: lamp1,
+            info: 'Blue Desk',
+            price: 250,
+            currency: '$',
+            id: ids.generate()
+        },
+        {
+            img: lamp2,
+            info: 'Gold',
+            price: 243,
+            currency: '$',
+            id: ids.generate()
+        },
+        {
+            img: lamp1,
+            info: 'Blue Desk',
+            price: 250,
+            currency: '$',
+            id: ids.generate()
+        }
+    ]
+
+    const goodsContent = goods.map( (element) =>
+        <div data-price={element.price} key={element.id} className={'product'}>
+            <div className={'lamp'}>
+                <img src={element.img}/>
             </div>
-            <div className='goods'>
-                <div className='lamp-info'>
-                    <div className='img-lamp'>
-                        <img className='lamp' src={lamp1}/>
-                    </div>
-                </div>
-                <div className='lamp-info'>
-                    <div className='img-lamp'>
-                        <img className='lamp' src={lamp2}/>
-                    </div>
-                </div>
+            <div className={'lamp-information'}>
+                <h2>{element.info}</h2>
+                <p>{element.currency + element.price.toFixed(2)}</p>
             </div>
         </div>
+    )
+
+    return (
+        <section className={'store'}>
+            <img className={'logo'} src={logo}/>
+            <div className={'container-store'}>
+                {goodsContent}
+            </div>
+        </section>
     )
 }
 
