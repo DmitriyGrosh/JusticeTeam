@@ -1,7 +1,6 @@
-import './main.css'
-import 'antd/dist/antd.css';
 import Header from "../header/Header";
 import StarterStore from "../starterStore/StarterStore";
+import './main.scss'
 
 
 const Main = () => {

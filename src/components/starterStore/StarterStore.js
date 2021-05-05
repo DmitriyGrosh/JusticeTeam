@@ -1,7 +1,7 @@
+import './StarterStore.scss'
 import logo from '../images/logo.svg'
 import lamp1 from '../images/lamp1.png'
 import lamp2 from '../images/lamp2.png'
-import './StarterStore.css'
 
 const StarterStore = () => {
 
@@ -39,8 +39,8 @@ const StarterStore = () => {
     ]
 
     const goodsContent = goods.map( (element) =>
-        <div data-price={element.price} key={element.id} className={'product'}>
-            <div className={'lamp'}>
+        <div data-price={element.price} key={element.id} className={'lamp'}>
+            <div className={'lamp-img'}>
                 <img src={element.img}/>
             </div>
             <div className={'lamp-information'}>

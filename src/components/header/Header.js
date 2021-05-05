@@ -1,28 +1,38 @@
-import './Header.css';
-import {Button} from "antd";
+import Menu from './Menu';
+import './Header.scss';
 import list from './../images/list.svg';
 import cart from './../images/cart.svg';
 import hexagon from './../images/hexagon.svg';
-import Menu from './Menu'
 
 const Header = () => {
+
+    const ids = require('short-id');
 
     const menu = [
         {
             info: 'Starter Store',
-            img: hexagon
+            img: hexagon,
+            id: ids.generate()
         },
         {
             info: 'Sign up',
-            img: ''
+            img: '',
+            id: ids.generate()
         },
         {
             info: 'Sign in',
-            img: ''
+            img: '',
+            id: ids.generate()
         },
         {
             info: 'Cart(0)',
-            img: cart
+            img: cart,
+            id: ids.generate()
+        },
+        {
+            info: '',
+            img: '',
+            id: ids.generate()
         }
     ]
 
@@ -30,6 +40,7 @@ const Header = () => {
         let header = document.querySelector('.header');
         let info = document.getElementsByClassName('info')
         header.classList.toggle('active');
+
         Array.from(info).forEach((e) => {
             e.classList.toggle('visible')
         })
