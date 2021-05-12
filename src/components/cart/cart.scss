@@ -1,0 +1,128 @@
+.cart-container {
+  width: 70%;
+  height: 100%;
+
+  @media (min-width: 1570px) {
+    width: 60%;
+  }
+
+  .cart-list {
+    width: 100%;
+    padding: 35px 0;
+    border-bottom: 1px solid gray;
+
+    .cart-item {
+      display: flex;
+      flex-direction: row;
+
+      @media (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cart-img {
+        max-width: 230px;
+        max-height: 230px;
+        width: 100%;
+        height: 100%;
+        background:  #ebebeb;
+
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .cart-info {
+        padding-left: 40px;
+        width: 100%;
+        display: flex;
+
+        @media (max-width: 767px) {
+          padding: 0;
+        }
+
+        .cart-info-container {
+          width: 100%;
+
+          @media (max-width: 767px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .cart-button {
+            display: flex;
+            justify-content: flex-end;
+            width: auto;
+
+            button {
+              width: 45px;
+              height: 45px;
+              border: 1px solid lightgrey;
+              border-radius: 5px;
+
+              &:hover {
+                border-radius: 5px;
+              }
+            }
+          }
+
+          h3 {
+            color: dodgerblue;
+          }
+
+          p {
+            padding-top: 5px;
+          }
+
+          .price {
+            color: darkgray;
+          }
+        }
+      }
+    }
+  }
+
+  .cart-total-container {
+    height: 100%;
+    max-height: 45px;
+    width: 100%;
+    margin-top: 15px;
+
+    @media (max-width: 767px) {
+      max-height: 85px;
+    }
+
+    .cart-total {
+      height: 100%;
+      border: 1px solid gray;
+      padding: 20px 15px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 767px) {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+      }
+
+      button {
+        width: 100%;
+        max-width: 120px;
+        text-transform: none;
+        color: white;
+        background: black;
+
+        @media (max-width: 767px) {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
