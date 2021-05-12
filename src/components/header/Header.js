@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Menu from './Menu';
 
 import './Header.scss';
@@ -61,6 +63,6 @@ const Header = () => {
 			</div>
 		</header>
 	);
-}
+};
 
 export default Header;

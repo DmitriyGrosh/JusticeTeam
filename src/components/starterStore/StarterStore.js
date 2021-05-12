@@ -1,8 +1,10 @@
-import Lamp from './Lamp'
+import React from 'react';
 
-import './StarterStore.scss'
+import Lamp from './Lamp';
 
-import logo from '../images/logo.svg'
+import './StarterStore.scss';
+
+import logo from '../images/logo.svg';
 
 const StarterStore = (props) => {
 
@@ -10,12 +12,12 @@ const StarterStore = (props) => {
 
 	return (
 		<section className='store'>
-			<img className='logo' src={logo} />
+			<img className='logo' src={ logo } />
 			<div className='container-store'>
-				<Lamp lampInfo={goods} />
+				<Lamp lampInfo={ goods } />
 			</div>
 		</section>
 	);
-}
+};
 
 export default StarterStore;

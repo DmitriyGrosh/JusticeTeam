@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from '../header/Header';
 import StarterStore from '../starterStore/StarterStore';
-import Card from'../card/Card'
-import Cart from '../cart/Cart'
+import Card from'../card/Card';
+import Cart from '../cart/Cart';
 
 import './main.scss';
 import lamp2 from '../images/lamp2.png';
@@ -64,7 +64,7 @@ const Main = () => {
 		if (localStorage.productsInCart === undefined) {
 			localStorage.setItem('productsInCart', JSON.stringify([]))
 		}
-	}, [])
+	}, []);
 
 
 
@@ -82,6 +82,6 @@ const Main = () => {
 			</Router>
 		</div>
 	);
-}
+};
 
 export default Main;

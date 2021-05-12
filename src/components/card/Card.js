@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Form from "./Form";
+import Form from './Form';
 
 import './Card.scss';
 
@@ -13,14 +13,18 @@ const Card = () => {
 
 	useEffect(() => {
 		document.querySelector('.number-cart').innerHTML = `(${count})`;
-	})
+	}, []);
 
 	return (
 		<div className='card'>
 			<div className='card-container'>
 				<div className='buy-card'>
 					<div className='card-img'>
-						<img className='card-lamp' src={currentLamp.img}/>
+						<img
+							className='card-lamp'
+							src={currentLamp.img}
+							alt='lamp'
+						/>
 					</div>
 					<div className='card-input'>
 						<h2 className='inp'>{currentLamp.info}</h2>

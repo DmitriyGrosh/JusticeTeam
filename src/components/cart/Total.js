@@ -1,4 +1,5 @@
-import { Button } from "@material-ui/core";
+import React from 'react'
+import { Button } from '@material-ui/core';
 
 const Total = (props) => {
 
@@ -14,6 +15,6 @@ const Total = (props) => {
 			</div>
 		</div>
 	)
-}
+};
 
 export default Total;

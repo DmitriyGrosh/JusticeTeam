@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useForm } from "react-hook-form";
-import {Button, ThemeProvider, createMuiTheme} from "@material-ui/core";
+import { useForm } from 'react-hook-form';
+import { Button, ThemeProvider, createMuiTheme } from '@material-ui/core';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 
 const Form = (props) => {
 
   const { lamp } = props;
-  const { register, handleSubmit, formState: {errors}} = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [number, setNumber] = useState(JSON.parse(localStorage.getItem('numberInCart')));
 
   useEffect(() => {
 		document.querySelector('.number-cart').innerHTML = `(${number})`;
-	}, [number])
+	}, [number]);
 
   const theme = createMuiTheme({
     palette: {
@@ -21,7 +21,7 @@ const Form = (props) => {
         dark: '#ff9100',
         contrastText: '#ff9100',
       }
-  }})
+  }});
 
   const handleSubmitInLocalStorage = () => {
 		const lampsCart = JSON.parse(localStorage.getItem('productsInCart'))
@@ -56,7 +56,7 @@ const Form = (props) => {
 
 		localStorage.setItem('numberInCart', JSON.stringify(counter));
 		localStorage.setItem('productsInCart', JSON.stringify(lampsCart));
-  }
+  };
 
   return (
    <ThemeProvider theme={theme}>

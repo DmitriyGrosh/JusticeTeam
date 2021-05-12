@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Lamp = (props) => {
 
@@ -8,22 +9,22 @@ const Lamp = (props) => {
 
 		return(
 			<NavLink
-				to={`/home/lamp${element.id}`}
-				key={element.id}
+				to={`/home/lamp${ element.id }`}
+				key={ element.id }
 				className='lamp'
 			>
 				<div  className='lamp-img'>
 					<img src={element.img} />
 				</div>
 				<div className='lamp-information'>
-					<h2>{element.info}</h2>
-					<p>{element.currency + element.price.toFixed(2)}</p>
+					<h2>{ element.info }</h2>
+					<p>{ element.currency + element.price.toFixed(2) }</p>
 				</div>
 			</NavLink>
 		);
-	} );
+	});
 
-	return goodsContent
-}
+	return goodsContent;
+};
 
 export default Lamp;

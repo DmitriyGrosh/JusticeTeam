@@ -1,5 +1,5 @@
-import {useEffect, useState} from "react";
-import { IconButton } from "@material-ui/core";
+import React, { useEffect, useState } from 'react';
+import { IconButton } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 
 import Total from "./Total";
@@ -32,13 +32,13 @@ const Cart = () => {
 					setNumber(value);
 				}
 			})
-		}
+		};
 
 		return (
 			<div key={e.id} className='cart-list'>
 				<div className='cart-item'>
 					<div className='cart-img'>
-						<img src={img} />
+						<img src={img} alt='lamp' />
 					</div>
 					<div className='cart-info'>
 						<div className='cart-info-container'>
@@ -55,7 +55,7 @@ const Cart = () => {
 				</div>
 			</div>
 		)
-	})
+	});
 	 return (
 	 	<div className='cart-container'>
 			{newList}
