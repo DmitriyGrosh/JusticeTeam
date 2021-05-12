@@ -1,10 +1,12 @@
-import Main from "./components/main/Main";
+import Main from './components/main/Main';
+
 import './App.scss';
 
+
 function App() {
-  return (
-      <Main/>
-  );
+	return (
+		<Main />
+	);
 }
 
 export default App;
