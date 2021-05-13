@@ -12,9 +12,9 @@ const StarterStore = (props) => {
 
 	return (
 		<section className='store'>
-			<img className='logo' src={ logo } />
+			<img className='logo' src={logo} alt='logo' />
 			<div className='container-store'>
-				<Lamp lampInfo={ goods } />
+				<Lamp lampInfo={goods} />
 			</div>
 		</section>
 	);

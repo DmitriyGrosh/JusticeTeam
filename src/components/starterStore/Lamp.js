@@ -14,7 +14,7 @@ const Lamp = (props) => {
 				className='lamp'
 			>
 				<div  className='lamp-img'>
-					<img src={element.img} />
+					<img src={element.img} alt='lamp' />
 				</div>
 				<div className='lamp-information'>
 					<h2>{ element.info }</h2>

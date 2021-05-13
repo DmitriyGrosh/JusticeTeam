@@ -3,13 +3,18 @@ import { Button } from '@material-ui/core';
 
 const Total = (props) => {
 
-	const { data } = props;
+	const { data, logout } = props;
+
+	const handleLogOut = () => {
+		localStorage.setItem('auth', JSON.stringify(false));
+		logout();
+	}
 
 	return (
 		<div className='cart-total-container'>
 			<div className='cart-total'>
 				<p><strong>Sub total: </strong>${data.toFixed(2)}</p>
-				<Button variant='outlined'>
+				<Button onClick={handleLogOut} variant='outlined'>
 					Check out
 				</Button>
 			</div>

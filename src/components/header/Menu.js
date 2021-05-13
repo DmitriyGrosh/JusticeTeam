@@ -16,7 +16,9 @@ const Menu = (props) => {
 			data-mark={i}
 		>
 			<div className='info-img'>
-				<img src={item.img} />
+				{item.statusImg
+				&&
+				<img src={item.img} alt='lamp' />}
 			</div>
 			<div className='info-text'>
 				<div className='text'>

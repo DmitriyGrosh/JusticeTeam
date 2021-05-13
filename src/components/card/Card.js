@@ -5,14 +5,21 @@ import Form from './Form';
 
 import './Card.scss';
 
-const Card = () => {
+const Card = (props) => {
+
+	const { auth } = props;
+
 	const lamps = JSON.parse(localStorage.getItem('lamps'));
 	const count = localStorage.getItem('numberInCart');
 	const  { id } = useParams();
 	const currentLamp = lamps[id - 1];
 
 	useEffect(() => {
-		document.querySelector('.number-cart').innerHTML = `(${count})`;
+		if (auth) {
+			document.querySelector('.number-cart').innerHTML = `(${count})`;
+		} else {
+			document.querySelector('.number-cart').innerHTML ='(0)'
+		}
 	}, []);
 
 	return (
@@ -30,7 +37,7 @@ const Card = () => {
 						<h2 className='inp'>{currentLamp.info}</h2>
 						<p className='inp'>{currentLamp.currency + currentLamp.price.toFixed(2)}</p>
 						<p className='inp tag'>{currentLamp.tag}</p>
-						<Form lamp={currentLamp}/>
+						<Form lamp={currentLamp} auth={auth} />
 					</div>
 				</div>
 				<div className='card-info'>
