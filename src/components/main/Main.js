@@ -1,16 +1,29 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Header from '../header/Header';
 import StarterStore from '../starterStore/StarterStore';
 import Card from'../card/Card';
 import Cart from '../cart/Cart';
+import Reg from '../AuthReg/reg/Reg';
+import Auth from '../AuthReg/auth/Auth';
+import ProtectedRouter from './ProtectedRouter';
 
 import './main.scss';
 import lamp2 from '../images/lamp2.png';
 import lamp1 from '../images/lamp1.png';
 
 const Main = () => {
+
+	const [auth, setAuth] = useState(JSON.parse(localStorage.getItem('auth')));
+
+	const login = () => {
+		setAuth(true);
+	};
+
+	const logout = () => {
+		setAuth(false);
+	}
 
 	const goods = [
 		{
@@ -64,20 +77,46 @@ const Main = () => {
 		if (localStorage.productsInCart === undefined) {
 			localStorage.setItem('productsInCart', JSON.stringify([]))
 		}
+
+		if (localStorage.listOfUsers === undefined) {
+			localStorage.setItem('listOfUsers', JSON.stringify([]))
+		}
+
+		if (localStorage.auth === undefined) {
+			localStorage.setItem('auth', JSON.stringify(false));
+		}
+
 	}, []);
 
-
+	useEffect(() => {
+		if (!auth) {
+			document.querySelector('.number-cart').innerHTML = '(0)'
+		}
+	}, [auth])
 
 	return (
 		<div className='wrapper'>
 			<Router>
 				<Header />
 				<Switch>
-					<Route path='/cart/' component={Cart} />
+					<Route path='/auth/'>
+						<Auth path='/auth/' login={login} />
+					</Route>
+					<Route path='/reg/'>
+						<Reg login={login} />
+					</Route>
+					<Route path='/home/lamp:id/' >
+						<Card auth={auth} />
+					</Route>
 					<Route exact path='/home'>
 						<StarterStore goods={goods} />
 					</Route>
-					<Route path='/home/lamp:id/' component={Card} />
+					<ProtectedRouter
+						auth={auth}
+						path='/cart'
+						logout={logout}
+						component={Cart}
+					/>
 				</Switch>
 			</Router>
 		</div>

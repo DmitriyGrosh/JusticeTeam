@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom'
 import { IconButton } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 
@@ -6,7 +7,7 @@ import Total from "./Total";
 
 import './cart.scss'
 
-const Cart = () => {
+const Cart = ({ logout, ...rest }) => {
 	const lamps = JSON.parse(localStorage.getItem('lamps'));
 	const [data, setData] = useState(JSON.parse(localStorage.getItem('productsInCart')));
 	const [number, setNumber] = useState(JSON.parse(localStorage.getItem('numberInCart')));
@@ -59,9 +60,9 @@ const Cart = () => {
 	 return (
 	 	<div className='cart-container'>
 			{newList}
-			<Total data={sum} />
+			<Total logout={logout} data={sum} />
 		</div>
 	 );
  }
 
- export default Cart;
+ export default withRouter(Cart);

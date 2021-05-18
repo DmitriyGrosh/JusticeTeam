@@ -1,0 +1,113 @@
+.wrapper-auth-reg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.wrapper-auth-reg .container-reg {
+  width: 70%;
+}
+@media (min-width: 1570px) {
+  .wrapper-auth-reg .container-reg {
+    width: 60%;
+  }
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg .container-reg {
+    width: 80%;
+  }
+}
+.wrapper-auth-reg .container-reg h3 {
+  margin: 20px 0;
+  font-size: 30px;
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg .container-reg h3 {
+    text-align: center;
+  }
+}
+.wrapper-auth-reg .container-reg #form-container {
+  padding: 15px;
+  border: 1px solid lightgrey;
+  box-shadow: 1px 1px 2px #cfcaca, -1px -1px 2px #cfcaca;
+  border-radius: 5px;
+}
+.wrapper-auth-reg .container-reg #form-container #reg {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg .container-reg #form-container #reg {
+    align-items: center;
+  }
+}
+.wrapper-auth-reg .container-reg #form-container #reg p {
+  margin-bottom: 10px;
+  color: red;
+}
+.wrapper-auth-reg .container-reg #form-container #reg label {
+  font-weight: bold;
+  margin: 10px 0;
+}
+.wrapper-auth-reg .container-reg #form-container #reg input {
+  outline: 0;
+  margin-bottom: 5px;
+  padding: 10px 15px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  height: 25px;
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg .container-reg #form-container #reg input {
+    width: 100%;
+    border-radius: 0;
+  }
+}
+.wrapper-auth-reg .container-reg #form-container #reg input:focus {
+  border: 1px solid cornflowerblue;
+  border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .wrapper-auth-reg .container-reg #form-container #reg input:focus {
+    border-radius: 0;
+  }
+}
+.wrapper-auth-reg .container-reg #form-container #reg .error {
+  background: lightpink;
+  border: 1px solid lightcoral;
+  color: indianred;
+}
+.wrapper-auth-reg .container-reg #form-container #reg .error:focus {
+  border: 1px solid lightcoral;
+  border-radius: 5px;
+}
+.wrapper-auth-reg .container-reg #form-container #reg button {
+  width: 100%;
+  max-width: 100px;
+  height: 40px;
+  color: white;
+  background: darkorange;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.wrapper-auth-reg .container-reg .message {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: lightcoral;
+  color: darkred;
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+}
+
+/*# sourceMappingURL=reg.css.map */
