@@ -17,7 +17,7 @@ const Header = () => {
 			info: 'Starter Store',
 			img: hexagon,
 			id: ids.generate(),
-			src: '/home',
+			src: '/',
 			statusImg: true
 		},
 		{

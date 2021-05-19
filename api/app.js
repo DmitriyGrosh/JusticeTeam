@@ -5,7 +5,7 @@ const passport = require('passport')
 
 const authRoutes = require('./routes/auth')
 
-mongoose.connect('mongodb+srv://user:user@cluster0.jdwbj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://user:user@cluster0.svigr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => console.log('MongoDB connected'))
   .catch(error => console.log(error))

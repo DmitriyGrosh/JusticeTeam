@@ -6,8 +6,7 @@ const Total = (props) => {
 	const { data, logout } = props;
 
 	const handleLogOut = () => {
-		localStorage.setItem('auth', JSON.stringify(false));
-		logout();
+		localStorage.setItem('token', null)
 	}
 
 	return (

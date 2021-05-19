@@ -9,20 +9,29 @@ module.exports.login = async (req, res) => {
   })
 
   if (candidate) {
-    const password = bcrypt.compareSync(req.body.password, candidate.password)
-
-    if (password) {
-      const token = jwt.sign({
-        email: candidate.email,
-        userId: candidate._id
-      }, 'secret', {expiresIn: 3600})
-      res.status(200).json({
-        token: `Bearer ${token}`
+    try {
+      const password = bcrypt.compareSync(req.body.password, candidate.password)
+      if (password) {
+        const token = jwt.sign({
+          email: candidate.email,
+          userId: candidate._id
+        }, 'secret', {expiresIn: 3600})
+        res.status(200).json({
+          token: `Bearer ${token}`
+        })
+      } else {
+        res.status(401).json({
+          message: 'неверный пароль'
+        })
+      }
+    } catch (e) {
+      res.status(500).json({
+        message: 'error'
       })
     }
   } else {
     res.status(404).json({
-      message: 'такой пользователь отсутсвует'
+      message: 'такого пользователя не существует'
     })
   }
 }

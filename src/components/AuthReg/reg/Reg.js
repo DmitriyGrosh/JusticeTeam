@@ -4,8 +4,7 @@ import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import Cart from '../../cart/Cart';
-import ProtectedRouter from '../../main/ProtectedRouter';
+import { registerUser } from "../../../services/service";
 
 import './reg.scss'
 
@@ -27,42 +26,37 @@ const schema = yup.object().shape({
 		)
 });
 
-const Reg = (props) => {
-
-	const { login } = props;
-
+const Reg = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm({
 			resolver: yupResolver(schema)
 		}	);
-
 	const [checkAuth, setAuth] = useState(false);
-	const [checkReg, setReg] = useState(true);
+	const [checkReg, setReg] = useState({
+		status: false,
+		content: ''
+	});
+
+	const checkToken = (data) => {
+		registerUser(data)
+			.then((response) => {
+				setAuth(true);
+				console.log(response);
+			})
+			.catch((e) => {
+				setReg({
+					status: true,
+					content: e.response.data.message
+				});
+				console.log(e.response.data.message);
+			})
+	}
 
 	const onSubmit = (data) => {
-		let users = JSON.parse(localStorage.getItem('listOfUsers'));
 		const user = {
-			name: data.name,
 			email: data.email,
 			password: data.password
-		};
-
-		let checkUserForExistence = false;
-
-		users.forEach((e) => {
-			if (e.email === user.email) {
-				checkUserForExistence = true;
-			}
-		})
-
-		if (!checkUserForExistence) {
-			users.push(user);
-			setAuth(true);
-			login();
-			localStorage.setItem('listOfUsers', JSON.stringify(users));
-			localStorage.setItem('auth', JSON.stringify(true));
-		} else {
-			setReg(false);
 		}
+		checkToken(user)
 	}
 
 	return (
@@ -95,9 +89,9 @@ const Reg = (props) => {
 						<p>{errors.password?.message}</p>
 						<button type='submit'>Register</button>
 					</form>
-					{checkAuth && <Redirect from='reg' to='/home' />}
+					{checkAuth && <Redirect from='reg' to='/auth' />}
 				</div>
-				{!checkReg && <div className='message'>There is already a user with the same Email</div>}
+				{checkReg.status && <div className='message'>{checkReg.content}</div>}
 			</div>
 		</div>
 

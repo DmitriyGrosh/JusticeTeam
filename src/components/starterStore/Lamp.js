@@ -9,7 +9,7 @@ const Lamp = (props) => {
 
 		return(
 			<NavLink
-				to={`/home/lamp${ element.id }`}
+				to={`/lamp${ element.id }`}
 				key={ element.id }
 				className='lamp'
 			>

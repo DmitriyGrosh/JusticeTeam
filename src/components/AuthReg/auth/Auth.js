@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { login } from "../../../services/service";
+
 import './auth.scss';
 
 const schema = yup.object().shape({
@@ -20,38 +22,37 @@ const schema = yup.object().shape({
 		)
 });
 
-const Auth = (props) => {
-
-	const { login } = props;
-
+const Auth = () => {
 	const [auth, setAuth] = useState(false);
-	const [message, setMessage] = useState(true)
+	const [message, setMessage] = useState({
+		status: false,
+		content: ''
+	})
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(schema)
 	});
 
+	const getToken = (data) => {
+		login(data)
+			.then((response) => {
+				localStorage.setItem('token', response.data.token);
+				setAuth(true)
+			})
+			.catch((e) => {
+				setMessage({
+					status: true,
+					content: e.response.data.message
+				})
+			})
+	}
+
 	const onSubmit = (data) => {
-		const users = JSON.parse(localStorage.getItem('listOfUsers'));
 		const user = {
 			email: data.email,
 			password: data.password
-		};
-		let checkUserForExistence = false;
-
-		users.forEach((e) => {
-			if (e.email === user.email && e.password === user.password) {
-				checkUserForExistence = true;
-			}
-		})
-
-		if (checkUserForExistence) {
-			setAuth(true);
-			login();
-			localStorage.setItem('auth', JSON.stringify(true))
-		} else {
-			setMessage(false);
 		}
-	};
+		getToken(user)
+	}
 
 	return (
 		<div className='wrapper-auth-reg'>
@@ -79,7 +80,7 @@ const Auth = (props) => {
 					</form>
 					{auth && <Redirect from='auth' to='/cart' />}
 				</div>
-				{!message && <div className='message'>No such account exists yet</div> }
+				{message.status && <div className='message'>{message.content}</div> }
 			</div>
 		</div>
 	)

@@ -7,7 +7,7 @@ import Card from'../card/Card';
 import Cart from '../cart/Cart';
 import Reg from '../AuthReg/reg/Reg';
 import Auth from '../AuthReg/auth/Auth';
-import ProtectedRouter from './ProtectedRouter';
+// import ProtectedRouter from './ProtectedRouter';
 
 import './main.scss';
 import lamp2 from '../images/lamp2.png';
@@ -105,18 +105,19 @@ const Main = () => {
 					<Route path='/reg/'>
 						<Reg login={login} />
 					</Route>
-					<Route path='/home/lamp:id/' >
+					<Route path='/lamp:id/' >
 						<Card auth={auth} />
 					</Route>
-					<Route exact path='/home'>
+					<Route exact path='/'>
 						<StarterStore goods={goods} />
 					</Route>
-					<ProtectedRouter
-						auth={auth}
-						path='/cart'
-						logout={logout}
-						component={Cart}
-					/>
+					<Route path='/cart' component={Cart} />
+					{/*<ProtectedRouter*/}
+					{/*	auth={auth}*/}
+					{/*	path='/cart'*/}
+					{/*	logout={logout}*/}
+					{/*	component={Cart}*/}
+					{/*/>*/}
 				</Switch>
 			</Router>
 		</div>
