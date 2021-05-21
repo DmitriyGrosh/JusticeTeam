@@ -131,7 +131,7 @@ h4 {
 .card .card-container .card-input .form-container form input {
   outline: 0;
   outline-offset: 0;
-  border: 1px solid orange;
+  border: 1px solid darkorange;
   border-radius: 5px 0 0 5px;
   padding: 0 7px;
   height: 41px;
@@ -146,7 +146,7 @@ h4 {
 .card .card-container .card-input .form-container form button {
   box-shadow: 0 0 0 0;
   height: 43px;
-  background: orange;
+  background: darkorange;
   color: white;
   text-transform: none;
   border-radius: 0 5px 5px 0;
