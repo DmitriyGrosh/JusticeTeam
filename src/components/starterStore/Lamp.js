@@ -9,12 +9,12 @@ const Lamp = (props) => {
 
 		return(
 			<NavLink
-				to={`/home/lamp${ element.id }`}
+				to={`/lamp${ element.id }`}
 				key={ element.id }
 				className='lamp'
 			>
 				<div  className='lamp-img'>
-					<img src={element.img} alt='lamp' />
+					<img src={`http://localhost:5000/${element.image}`} alt='lamp' />
 				</div>
 				<div className='lamp-information'>
 					<h2>{ element.info }</h2>

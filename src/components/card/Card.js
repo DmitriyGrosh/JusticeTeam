@@ -29,7 +29,7 @@ const Card = (props) => {
 					<div className='card-img'>
 						<img
 							className='card-lamp'
-							src={currentLamp.img}
+							src={`http://localhost:5000/${currentLamp.image}`}
 							alt='lamp'
 						/>
 					</div>

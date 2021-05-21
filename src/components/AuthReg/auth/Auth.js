@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import jwt_decode from "jwt-decode";
+
+import {getOrders, login} from "../../../services/service";
 
 import './auth.scss';
 
@@ -22,36 +25,43 @@ const schema = yup.object().shape({
 
 const Auth = (props) => {
 
-	const { login } = props;
-
-	const [auth, setAuth] = useState(false);
-	const [message, setMessage] = useState(true)
+	const [message, setMessage] = useState({
+		status: false,
+		content: ''
+	})
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(schema)
 	});
+	const [auth, setAuth] = useState(false)
+
+	const getToken = (data) => {
+		login(data)
+			.then((response) => {
+				localStorage.setItem('token', response.data.token);
+				setAuth(true)
+			})
+			.catch((e) => {
+				setMessage({
+					status: true,
+					content: e.response.data.message
+				})
+			})
+	}
 
 	const onSubmit = (data) => {
-		const users = JSON.parse(localStorage.getItem('listOfUsers'));
 		const user = {
 			email: data.email,
 			password: data.password
-		};
-		let checkUserForExistence = false;
-
-		users.forEach((e) => {
-			if (e.email === user.email && e.password === user.password) {
-				checkUserForExistence = true;
-			}
-		})
-
-		if (checkUserForExistence) {
-			setAuth(true);
-			login();
-			localStorage.setItem('auth', JSON.stringify(true))
-		} else {
-			setMessage(false);
 		}
-	};
+		getToken(user)
+
+		getOrders()
+			.then((response) => {
+				const filtCart = response.data
+					.filter(el => el.user === jwt_decode(localStorage.getItem('token')).email)
+				localStorage.setItem('productsInCart', JSON.stringify(filtCart))
+			})
+	}
 
 	return (
 		<div className='wrapper-auth-reg'>
@@ -77,9 +87,9 @@ const Auth = (props) => {
 						<p>{errors.password?.message}</p>
 						<button type='submit'>Login</button>
 					</form>
-					{auth && <Redirect from='auth' to='/cart' />}
+					{auth && <Redirect from='auth' to='/home' />}
 				</div>
-				{!message && <div className='message'>No such account exists yet</div> }
+				{message.status && <div className='message'>{message.content}</div> }
 			</div>
 		</div>
 	)

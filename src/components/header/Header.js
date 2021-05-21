@@ -8,7 +8,6 @@ import list from './../images/list.svg';
 import cart from './../images/cart.svg';
 import hexagon from './../images/hexagon.svg';
 
-
 const Header = () => {
 	const ids = require('short-id');
 

@@ -9,7 +9,6 @@ import logo from '../images/logo.svg';
 const StarterStore = (props) => {
 
 	const { goods } = props;
-
 	return (
 		<section className='store'>
 			<img className='logo' src={logo} alt='logo' />
