@@ -1,12 +1,21 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Button } from '@material-ui/core';
 
 const Total = (props) => {
 
-	const { data, logout } = props;
+	const [flag, setFlag] = useState(false)
+
+	useEffect(() => {
+		localStorage.setItem('productsInCart', JSON.stringify([]))
+	}, [flag])
+
+	const { data } = props;
 
 	const handleLogOut = () => {
-		localStorage.setItem('token', null)
+		localStorage.setItem('numberInCart', 0)
+		localStorage.setItem('token', false)
+		localStorage.setItem('productsInCart', JSON.stringify([]))
+		setFlag(!flag)
 	}
 
 	return (

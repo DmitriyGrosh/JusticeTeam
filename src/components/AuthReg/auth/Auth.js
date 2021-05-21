@@ -3,8 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Redirect } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import jwt_decode from "jwt-decode";
 
-import { login } from "../../../services/service";
+import {getOrders, login} from "../../../services/service";
 
 import './auth.scss';
 
@@ -22,8 +23,8 @@ const schema = yup.object().shape({
 		)
 });
 
-const Auth = () => {
-	const [auth, setAuth] = useState(false);
+const Auth = (props) => {
+
 	const [message, setMessage] = useState({
 		status: false,
 		content: ''
@@ -31,6 +32,7 @@ const Auth = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(schema)
 	});
+	const [auth, setAuth] = useState(false)
 
 	const getToken = (data) => {
 		login(data)
@@ -52,6 +54,13 @@ const Auth = () => {
 			password: data.password
 		}
 		getToken(user)
+
+		getOrders()
+			.then((response) => {
+				const filtCart = response.data
+					.filter(el => el.user === jwt_decode(localStorage.getItem('token')).email)
+				localStorage.setItem('productsInCart', JSON.stringify(filtCart))
+			})
 	}
 
 	return (
@@ -78,7 +87,7 @@ const Auth = () => {
 						<p>{errors.password?.message}</p>
 						<button type='submit'>Login</button>
 					</form>
-					{auth && <Redirect from='auth' to='/cart' />}
+					{auth && <Redirect from='auth' to='/home' />}
 				</div>
 				{message.status && <div className='message'>{message.content}</div> }
 			</div>
