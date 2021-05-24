@@ -41,11 +41,10 @@ const Form = (props) => {
           setCart(data)
       })
         .catch((e) => {
-          setMessage({
-              status: true,
-              message: 'для покупки нужно авторезироваться'
-            }
-          )
+          setMessage( {
+            status: true,
+            content: 'для покупки нужно авторизоваться'
+          })
         })
     }
 
